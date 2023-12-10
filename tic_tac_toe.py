@@ -10,7 +10,7 @@ class Board:
         self.state_board = state_board
         self.count_busy_cells = count_busy_cells
 
-    def change_state_board(self, num_cell: int, player):
+    def change_state_board(self, num_cell: int, player: 'Player'):
         """ Метод изменяет значение ячейки """
         if self.state_board[num_cell].cell_value == ' ':
             self.state_board[num_cell].cell_value = player.value_for_move
@@ -51,7 +51,7 @@ class Cell:
 class Player:
     """ Класс для создания игрока """
 
-    def __init__(self, name: str, count_win: int = 0, value_for_move: str = ''):
+    def __init__(self, name: str, count_win: int = 0, value_for_move: str = ' '):
         self.name = name
         self.count_win = count_win
         self.value_for_move = value_for_move
@@ -108,7 +108,7 @@ class Game:
                         print('Игра завершена! Ничья!')
                         break
 
-    def start_move(self, player):
+    def start_move(self, player: 'Player'):
         """ Метод для запуска одного хода игры одним из игроков """
         num_cell = player.make_move() - 1
         self.board.change_state_board(num_cell, player)
